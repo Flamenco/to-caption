@@ -6,7 +6,7 @@
  */
 
 import {expect} from "chai";
-import {toCaption} from "../src/index";
+import toCaption from "../src/index";
 
 describe('toCaption', () => {
 

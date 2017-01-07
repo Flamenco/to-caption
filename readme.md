@@ -1,6 +1,6 @@
 # to-caption
 
-Converts CamelCase and delimited strings to captions.
+Converts camelCase and delimited strings to captions.
 
 >Delimiters are dot, underscore, and dash. \[ . _ - \]
 
@@ -17,16 +17,18 @@ thisIsATest
 ## Usage
 ```bash
 npm install --save to-caption
+```
 
-import {toCaption} from 'to-caption'
+```javascript
+var toCaption = require('to-caption');
 const myCaption = toCaption('helloWorld');
 // myCaption should now be 'Hello World';
 ```
 ## Rules
-* Delimiters are period, dash, and underscore
-* Leading and trailing delimiters are ignored
-* The first non-delimited character is capitalized (if not already capitalized).  
-* Underscores, dots, and slashes are replaced with spaces and the following non-delimiter character is uppercased.  
+* Delimiters are period, dash, and underscore.
+* Leading and trailing delimiters are ignored.
+* The first non-delimited character is capitalized (if not already capitalized).
+* Underscores, dots, and slashes are replaced with spaces and the following non-delimiter character is uppercased.
 * Uppercase letters are prefixed with spaces.
 
 # More Samples

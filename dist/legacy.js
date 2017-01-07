@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.toCaption = toCaption;
+exports.default = toCaption;
 /*!
  * to-caption
  *

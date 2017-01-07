@@ -13,7 +13,7 @@
 
 const rxUpper = /[A-Z]/;
 
-export function toCaption(str) {
+export default function toCaption(str) {
     const ret = [];
     for (let i = 0; i < str.length; i++) {
         const ch = str[i];
