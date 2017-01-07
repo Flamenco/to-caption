@@ -1,6 +1,6 @@
 {
   "name": "to-caption",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Converts camelCase and delimited strings to captions",
   "main": "dist/legacy.js",
   "scripts": {

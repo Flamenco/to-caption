@@ -1,9 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = toCaption;
 /*!
  * to-caption
  *
@@ -64,3 +60,5 @@ function toCaption(str) {
 
     return ret.join('');
 }
+
+module.exports = toCaption;
