@@ -10,40 +10,53 @@ import toCaption from "../src/index";
 
 describe('toCaption', () => {
 
-    it('converts lowercase', () => {
-        expect(toCaption('foobar')).to.equal('Foobar');
-    });
+  it('converts lowercase', () => {
+    expect(toCaption('foobar')).to.equal('Foobar');
+  });
 
-    it('accepts uppercast', () => {
-        expect(toCaption('Foobar')).to.equal('Foobar');
-    });
-    
-    it('converts camelcase', () => {
-        expect(toCaption('fooBar')).to.equal('Foo Bar');
-    });
+  it('accepts uppercast', () => {
+    expect(toCaption('Foobar')).to.equal('Foobar');
+  });
 
-    it('converts dot', () => {
-        expect(toCaption('foo.bar')).to.equal('Foo Bar');
-    });
+  it('converts camelcase', () => {
+    expect(toCaption('fooBar')).to.equal('Foo Bar');
+  });
 
-    it('converts dash', () => {
-        expect(toCaption('foo-bar')).to.equal('Foo Bar');
-    });
+  it('converts dot', () => {
+    expect(toCaption('foo.bar')).to.equal('Foo Bar');
+  });
 
-    it('converts underscore', () => {
-        expect(toCaption('foo_bar')).to.equal('Foo Bar');
-    });
+  it('converts dash', () => {
+    expect(toCaption('foo-bar')).to.equal('Foo Bar');
+  });
 
-    it('converts multiple delimiters', () => {
-        expect(toCaption('foo----bar')).to.equal('Foo Bar');
-    });
+  it('converts underscore', () => {
+    expect(toCaption('foo_bar')).to.equal('Foo Bar');
+  });
 
-    it('converts multiple prefix ', () => {
-        expect(toCaption('-----foo-bar')).to.equal('Foo Bar');
-    });
+  it('converts multiple delimiters', () => {
+    expect(toCaption('foo----bar')).to.equal('Foo Bar');
+  });
 
-    it('converts multiple suffix ', () => {
-        expect(toCaption('foo-bar----')).to.equal('Foo Bar');
-    });
+  it('converts multiple prefix ', () => {
+    expect(toCaption('-----foo-bar')).to.equal('Foo Bar');
+  });
+
+  it('converts multiple suffix ', () => {
+    expect(toCaption('foo-bar----')).to.equal('Foo Bar');
+  });
+
+  it('accepts null ', () => {
+    expect(toCaption(null)).to.equal('');
+  });
+
+  it('accepts undefined ', () => {
+    expect(toCaption(undefined)).to.equal('');
+  });
+
+  it('accepts nothing ', () => {
+    expect(toCaption()).to.equal('');
+  });
+
 });
 
