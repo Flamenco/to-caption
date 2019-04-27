@@ -16,6 +16,9 @@
 var rxUpper = /[A-Z]/;
 
 function toCaption(str) {
+    if (str === null || str === undefined) {
+        return '';
+    }
     var ret = [];
     for (var i = 0; i < str.length; i++) {
         var ch = str[i];
