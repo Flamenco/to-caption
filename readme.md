@@ -21,7 +21,7 @@ npm install --save to-caption
 ```
 
 ```javascript
-var toCaption = require('to-caption');
+const toCaption = require('to-caption');
 const myCaption = toCaption('helloWorld');
 // myCaption should now be 'Hello World';
 ```
@@ -49,8 +49,8 @@ A webpacked distribution is included at dist/toCaption.js.  The function is expo
 # More Samples
 This table should give you an idea of the process.
 
-ID|Label
--|-
+ID|Label| Comment
+-|-|-
 this.is.a.test | This Is A Test
 foo|Foo
 Foo|Foo
@@ -66,6 +66,9 @@ foo_ | Foo
 \_\_foo | Foo
 foo\_\_ | Foo
 \-\-foo--bar\-\- | Foo Bar
+FOOBAR | F O O B A R | See option for `onAllUppercase` to avoid this behavior.
+FOOBAR | FOOBAR | onAllUppercase = 'keep'
+FOOBAR | Foobar | onAllUppercase = 'titlecase'
 
 # Options
 
