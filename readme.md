@@ -15,6 +15,7 @@ thisIsATest
 >This Is A Test
 
 ## Usage
+### Node / NPM
 ```bash
 npm install --save to-caption
 ```
@@ -24,6 +25,20 @@ var toCaption = require('to-caption');
 const myCaption = toCaption('helloWorld');
 // myCaption should now be 'Hello World';
 ```
+### Browser
+A webpacked distribution is included at dist/toCaption.js.  The function is exported at `window.toCaption(...)`
+```html
+<html>
+<head>
+  <script src="../dist/bundle.js"></script>
+  <script>
+    console.log(toCaption('helloWorld'))
+  </script>
+</head>
+</html>
+```
+
+
 ## Rules
 * Delimiters are period, dash, and underscore.
 * Leading and trailing delimiters are ignored.
@@ -51,6 +66,24 @@ foo_ | Foo
 \_\_foo | Foo
 foo\_\_ | Foo
 \-\-foo--bar\-\- | Foo Bar
+
+# Options
+
+## onAllUppercase
+
+```
+toCaption('HELLO', {onAllUppercase: 'keep'})
+```
+
+This option will set the default behavior when the string is all uppercase
+### 'keep'
+The string will remain all uppercase. (HELLO)
+
+### 'titlecase'
+The string will become titlecase. (Hello)
+
+### 'default', undefined, null, or anything else
+The string will have spaces between each letter, as if each letter was a word. (H E L L O)
 
 # License
 MIT. Check the LICENSE file for all the details.
