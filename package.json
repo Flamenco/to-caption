@@ -1,6 +1,6 @@
 {
   "name": "to-caption",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Converts camelCase and delimited strings to captions",
   "main": "src/index.js",
   "type": "module",
