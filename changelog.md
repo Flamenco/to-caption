@@ -1,3 +1,7 @@
+#1.1.2
+* Add typescript bindings
+#1.1.1
+* Update documentation
 #1.1.0
 * Add option to special-case all-uppercase strings.
 * Upgrade all NPM dev modules
