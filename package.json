@@ -2,7 +2,8 @@
   "name": "to-caption",
   "version": "1.0.4",
   "description": "Converts camelCase and delimited strings to captions",
-  "main": "dist/legacy.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "prepublish": "webpack",
     "release:legacy": "./node_modules/.bin/babel src/index.js --out-file dist/legacy.js",
