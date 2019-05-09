@@ -1,27 +1,32 @@
 var path = require('path');
 
 module.exports = {
-    devtool: 'source-map',
-    entry: [
-        './src/index.js'
-    ],
-    output: {
-        path: path.join(__dirname, 'dist'),
-        publicPath: '/',
-        filename: 'bundle.js',
-        target: 'node',
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loaders: ['babel'],
-                include: path.join(__dirname, 'src')
-            }
-        ]
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    }
+  "mode": "production",
+  devtool: 'source-map',
+  entry: [
+    './src/index.js'
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'toCaption.js',
+    library: 'toCaption',
+    libraryTarget: 'umd',
+    libraryExport: 'default',
+    globalObject: 'this'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.m?jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+        }
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  }
 };
