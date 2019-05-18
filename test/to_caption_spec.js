@@ -66,6 +66,10 @@ describe('toCaption', () => {
     expect(toCaption('HELLO', {onAllUppercase: 'titlecase'})).to.equal('Hello');
   });
 
+  it('handles all uppercase with separator -> titlecase', () => {
+    expect(toCaption('HELLO_WORLD', {onAllUppercase: 'titlecase'})).to.equal('Hello World');
+  });
+
   it('handles all uppercase -> keep', () => {
     expect(toCaption('HELLO', {onAllUppercase: 'keep'})).to.equal('HELLO');
   });

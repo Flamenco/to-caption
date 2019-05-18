@@ -37,7 +37,17 @@ export default function toCaption(str, options = {onAllUppercase: undefined}) {
         return str;
       } else {
         // 'titlecase'
-        return str[0] + str.substring(1).toLowerCase()
+        const words = str.split(/[-_]/)
+        return words
+          .filter(it => it.length)
+          .map(it => {
+            if (it.length === 1) {
+              return it[0]
+            } else {
+              return it[0] + it.substring(1).toLowerCase();
+            }
+          })
+          .join(' ')
       }
     }
   }
