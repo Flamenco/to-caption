@@ -1,3 +1,5 @@
+#1.1.3
+* Fix all-uppercase logic
 #1.1.2
 * Add typescript bindings
 #1.1.1
