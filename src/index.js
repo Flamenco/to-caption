@@ -1,7 +1,7 @@
 /*!
  * to-caption
  *
- * Copyright 2016-2019 Steven Spungin
+ * Copyright 2016-2026 Steven Spungin
  * Released under the MIT license
  */
 
@@ -11,86 +11,75 @@
  * Leading and trailing delimiters are ignored.  Multiple delimiters are ignored.
  */
 
-const rxUpper = /[A-Z]/;
+const DELIMITERS = '._-'
+
+const rxUpper = /[A-Z]/
+
+/**
+ * Splits a string on delimiters, dropping empty words
+ *
+ * @param {string} str
+ * @return {string[]}
+ */
+function toWords(str) {
+  const words = []
+  let word = ''
+  for (const ch of str) {
+    if (DELIMITERS.includes(ch)) {
+      if (word) {
+        words.push(word)
+      }
+      word = ''
+    } else {
+      word += ch
+    }
+  }
+  if (word) {
+    words.push(word)
+  }
+  return words
+}
+
+/**
+ * Uppercases the first character and puts a space before each later uppercase letter
+ *
+ * @param {string} word
+ * @return {string}
+ */
+function captionWord(word) {
+  let caption = word[0].toUpperCase()
+  for (const ch of word.substring(1)) {
+    caption += rxUpper.test(ch) ? ' ' + ch : ch
+  }
+  return caption
+}
+
+/**
+ * @param {string} word
+ * @return {string}
+ */
+function titlecaseWord(word) {
+  return word[0] + word.substring(1).toLowerCase()
+}
 
 /**
  *
  * @param str The string to convert
- * @param options onAllUppercase: undefined | 'keep' | 'titlecase
+ * @param options onAllUppercase: undefined | 'default' | 'keep' | 'titlecase'
  * @return {string}
  */
-export default function toCaption(str, options = {onAllUppercase: undefined}) {
-  if (str === null || str === undefined) {
+export default function toCaption(str, options) {
+  if (typeof str !== 'string') {
     return ''
   }
-  if (str.length > 1 && options.onAllUppercase === 'keep' || options.onAllUppercase === 'titlecase') {
-    let notUc = false
-    for (let i = 0; i < str.length; i++) {
-      notUc = str[i] !== str[i].toUpperCase()
-      if (notUc) {
-        break;
-      }
+  const { onAllUppercase } = options || {}
+  if (str === str.toUpperCase()) {
+    if (onAllUppercase === 'keep') {
+      return str
     }
-    if (!notUc) {
-      // 'keep'
-      if (options.onAllUppercase === 'keep') {
-        return str;
-      } else {
-        // 'titlecase'
-        const words = str.split(/[-_]/)
-        return words
-          .filter(it => it.length)
-          .map(it => {
-            if (it.length === 1) {
-              return it[0]
-            } else {
-              return it[0] + it.substring(1).toLowerCase();
-            }
-          })
-          .join(' ')
-      }
+    if (onAllUppercase === 'titlecase') {
+      return toWords(str).map(titlecaseWord).join(' ')
     }
   }
-  const ret = [];
-  for (let i = 0; i < str.length; i++) {
-    const ch = str[i];
-
-    switch (ch) {
-      case '_':
-      case '.':
-      case '-':
-        if (ret.length > 0) {
-          let nextChar, found = false;
-          while (i + 1 < str.length && !found) {
-            i++;
-            nextChar = str[i];
-            switch (nextChar) {
-              case '_':
-              case '.':
-              case '-':
-                break;
-              default:
-                found = true;
-                break;
-            }
-          }
-          if (found) {
-            ret.push(' ');
-            ret.push(nextChar.toUpperCase());
-          }
-        }
-        break;
-      default:
-        if (ret.length === 0) {
-          ret.push(ch.toUpperCase());
-        } else {
-          if (rxUpper.test(ch)) {
-            ret.push(' ');
-          }
-          ret.push(ch);
-        }
-    }
-  }
-
-  return ret.join('');
+  return toWords(str).map(captionWord).join(' ')
 }
