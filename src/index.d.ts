@@ -1,7 +1,19 @@
-//export default function toCaption(str, options = {onAllUppercase: undefined}) {
+/*!
+ * to-caption
+ *
+ * Copyright 2016-2026 Steven Spungin
+ * Released under the MIT license
+ */
 
-export as namespace toCaption;
+export interface ToCaptionOptions {
+  /**
+   * How to caption a string with no lowercase letters.
+   * 'keep' returns it unchanged, 'titlecase' capitalizes each word,
+   * anything else spaces every capital as its own word
+   */
+  onAllUppercase?: 'default' | 'keep' | 'titlecase' | null
+}
 
-export = toCaption;
+declare function toCaption(text?: string | null, options?: ToCaptionOptions | null): string
 
-declare function toCaption(text?: string | null | undefined, options?: { onAllUppercase?: undefined | 'keep' | 'titlecase' }): string;
+export default toCaption
