@@ -1,0 +1,6 @@
+/*!
+ * to-caption
+ *
+ * Copyright 2016-2026 Steven Spungin
+ * Released under the MIT license
+ */
