@@ -1,15 +1,46 @@
 {
   "name": "to-caption",
-  "version": "1.1.3",
-  "description": "Converts camelCase and delimited strings to captions",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "version": "1.2.0",
+  "description": "Converts camelCase, PascalCase and delimited strings to captions",
   "type": "module",
+  "main": "./dist/toCaption.js",
+  "module": "./src/index.js",
+  "types": "./dist/toCaption.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./src/index.d.ts",
+        "default": "./src/index.js"
+      },
+      "require": {
+        "types": "./dist/toCaption.d.ts",
+        "default": "./dist/toCaption.js"
+      }
+    },
+    "./dist/toCaption.js": {
+      "types": "./dist/toCaption.d.ts",
+      "default": "./dist/toCaption.js"
+    },
+    "./src/index.js": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "dist",
+    "changelog.md"
+  ],
+  "sideEffects": false,
   "scripts": {
-    "prepublish": "webpack",
-    "release:legacy": "./node_modules/.bin/babel src/index.js --out-file dist/legacy.js",
-    "release:es2015": "./node_modules/.bin/babel src/index.js --out-file dist/es2015.js --no-babelrc",
-    "test": "./node_modules/.bin/mocha --require @babel/register test/"
+    "build": "webpack",
+    "copyright": "node scripts/update-license.js && eslint . --fix",
+    "lint": "eslint .",
+    "test": "mocha",
+    "check:types": "attw --pack . --exclude-entrypoints ./src/index.js",
+    "check:homepage": "node scripts/check-homepage.js",
+    "prepublishOnly": "npm run check:homepage && npm run copyright && npm run build && npm run lint && npm test && npm run check:types"
   },
   "keywords": [
     "label",
@@ -23,24 +54,33 @@
   "author": "Steven Spungin",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/node": "^7.2.2",
-    "@babel/plugin-transform-runtime": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/register": "^7.4.4",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-transform-commonjs": "^1.1.5",
-    "babel-plugin-transform-commonjs-es2015-modules": "^4.0.1",
-    "chai": "^4.2.0",
-    "mocha": "^6.1.4",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.2"
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "babel-loader": "^10.1.1",
+    "chai": "^6.2.2",
+    "eslint": "^10.11.0",
+    "eslint-plugin-headers": "^1.3.4",
+    "globals": "^17.12.0",
+    "mocha": "^12.0.2",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "webpack": "^5.111.1",
+    "webpack-cli": "^7.2.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/flamenco/to-caption.git"
+    "url": "git+https://github.com/Flamenco/to-caption.git"
   },
-  "bugs": "https://github.com/flamenco/to-caption/issues",
-  "browserslist": "> 0.25%, not dead"
+  "bugs": "https://github.com/Flamenco/to-caption/issues",
+  "homepage": "https://www.code-evolve.com/products/to-caption",
+  "browserslist": "> 0.25%, not dead",
+  "config": {
+    "copyright": {
+      "holder": "Steven Spungin",
+      "startYear": 2016
+    }
+  }
 }

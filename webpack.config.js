@@ -1,32 +1,26 @@
-var path = require('path');
+import { fileURLToPath } from 'node:url'
 
-module.exports = {
-  "mode": "production",
+export default {
+  mode: 'production',
   devtool: 'source-map',
-  entry: [
-    './src/index.js'
-  ],
+  entry: './src/index.js',
   output: {
-    path: path.join(__dirname, 'dist'),
-    publicPath: '/',
+    path: fileURLToPath(new URL('./dist', import.meta.url)),
     filename: 'toCaption.js',
-    library: 'toCaption',
-    libraryTarget: 'umd',
-    libraryExport: 'default',
-    globalObject: 'this'
+    library: {
+      name: 'toCaption',
+      type: 'umd',
+      export: 'default',
+    },
+    globalObject: 'this',
   },
   module: {
     rules: [
       {
-        test: /\.m?jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-        }
-      }
-    ]
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+    ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  }
-};
+}
